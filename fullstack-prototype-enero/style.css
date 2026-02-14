@@ -1,0 +1,147 @@
+/* ========================================
+   CUSTOM STYLES FOR FULL-STACK APP
+   ======================================== */
+
+/* Basic page styling */
+body {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* ========================================
+   PAGE VISIBILITY SYSTEM
+   - All pages are hidden by default
+   - Only the page with "active" class shows
+   ======================================== */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* ========================================
+   ROLE-BASED VISIBILITY
+   - Controls what users see based on login status
+   ======================================== */
+
+/* When NOT logged in (not-authenticated):
+   Hide all elements with "role-logged-in" class */
+body.not-authenticated .role-logged-in {
+    display: none;
+}
+
+/* When logged in (authenticated):
+   Hide all elements with "role-logged-out" class */
+body.authenticated .role-logged-out {
+    display: none;
+}
+
+/* Admin-only elements:
+   Hidden by default, shown only when body has "is-admin" class */
+.role-admin {
+    display: none;
+}
+
+body.is-admin .role-admin {
+    display: block;
+}
+
+/* For admin links in navbar (need inline-block for proper spacing) */
+body.is-admin .role-admin.nav-item {
+    display: inline-block;
+}
+
+/* ========================================
+   CARD STYLING
+   ======================================== */
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: none;
+    margin-bottom: 1.5rem;
+}
+
+/* ========================================
+   TABLE STYLING
+   ======================================== */
+.table {
+    background-color: white;
+}
+
+.table thead {
+    background-color: #f8f9fa;
+}
+
+/* ========================================
+   BUTTON STYLING
+   ======================================== */
+.btn-sm {
+    font-size: 0.875rem;
+}
+
+/* ========================================
+   FORM STYLING
+   ======================================== */
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Status badges for requests */
+.badge-pending {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.badge-approved {
+    background-color: #28a745;
+}
+
+.badge-rejected {
+    background-color: #dc3545;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ========================================
+   CUSTOM ANIMATIONS
+   ======================================== */
+.page.active {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   LOADING SPINNER (Optional)
+   ======================================== */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
