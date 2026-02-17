@@ -13,7 +13,6 @@ const STORAGE_KEY = 'ipt_demo_v1';
 // Current logged-in user (null if not logged in)
 let currentUser = null;
 
-// Our "database" - stored in localStorage
 window.db = {
     accounts: [],
     departments: [],
@@ -38,21 +37,18 @@ function navigateTo(hash) {
  * This function runs whenever the URL hash changes
  */
 function handleRouting() {
-    // Get current hash (e.g., '#/login' becomes '/login')
+
     let hash = window.location.hash.slice(1) || '/';
     
-    // Remove leading slash if present
     if (hash.startsWith('/')) {
         hash = hash.slice(1);
     }
     
     console.log('Navigating to:', hash); // Helpful for debugging
     
-    // Define which routes require authentication
     const protectedRoutes = ['profile', 'requests'];
     const adminRoutes = ['employees', 'accounts', 'departments'];
     
-    // Check if user is trying to access a protected route without being logged in
     if (protectedRoutes.includes(hash) && !currentUser) {
         console.log('Access denied: Not authenticated');
         navigateTo('#/login');
@@ -60,7 +56,6 @@ function handleRouting() {
         return;
     }
     
-    // Check if non-admin user is trying to access admin routes
     if (adminRoutes.includes(hash) && (!currentUser || currentUser.role !== 'admin')) {
         console.log('Access denied: Not an admin');
         navigateTo('#/');
